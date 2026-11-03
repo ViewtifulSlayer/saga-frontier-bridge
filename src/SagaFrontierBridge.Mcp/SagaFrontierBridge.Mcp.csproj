@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>SagaFrontierBridge.Mcp</AssemblyName>
+    <RootNamespace>SagaFrontierBridge.Mcp</RootNamespace>
+    <Description>Read-only MCP wrapper for the SaGa Frontier Remastered bridge.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SagaFrontierBridge.Core\SagaFrontierBridge.Core.csproj" />
+  </ItemGroup>
+</Project>

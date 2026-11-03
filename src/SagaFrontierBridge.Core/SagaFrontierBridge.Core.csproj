@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>SagaFrontierBridge.Core</AssemblyName>
+    <RootNamespace>SagaFrontierBridge.Core</RootNamespace>
+    <Description>Read-only loopback HTTP bridge for SaGa Frontier Remastered.</Description>
+  </PropertyGroup>
+</Project>

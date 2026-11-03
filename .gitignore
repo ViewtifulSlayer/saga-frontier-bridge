@@ -1,0 +1,29 @@
+bin/
+obj/
+artifacts/
+.vs/
+.idea/
+*.user
+*.suo
+*.log
+__pycache__/
+*.pyc
+
+# Local environment files. Do not commit tokens or credentials.
+.env
+.env.*
+!.env.example
+
+# Local game or BepInEx installation copies. Never commit the game or mod loader.
+BepInEx/
+doorstop_config.ini
+winhttp.dll
+GameAssembly.dll
+*.exe
+
+# Local reference dumps produced by Il2CppDumper or Cpp2IL.
+dumper/
+cpp2il/
+dump.cs
+il2cpp.h
+DummyDll/

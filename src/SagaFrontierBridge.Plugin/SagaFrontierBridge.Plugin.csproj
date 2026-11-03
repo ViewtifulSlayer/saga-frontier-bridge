@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>SagaFrontierBridge</AssemblyName>
+    <RootNamespace>SagaFrontierBridge</RootNamespace>
+    <Product>SaGa Frontier Bridge</Product>
+    <Version>0.1.0</Version>
+    <Authors>ViewtifulSlayer</Authors>
+    <Description>Read-only loopback bridge for SaGa Frontier Remastered.</Description>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <BepInExPluginGuid>com.viewtifulslayer.sagafrontier.bridge</BepInExPluginGuid>
+    <BepInExPluginName>SaGa Frontier Bridge</BepInExPluginName>
+    <BepInExPluginVersion>$(Version)</BepInExPluginVersion>
+    <NoWarn>$(NoWarn);NU1603</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.791" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" PrivateAssets="all" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.22" IncludeAssets="compile" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SagaFrontierBridge.Core\SagaFrontierBridge.Core.csproj" />
+  </ItemGroup>
+</Project>
