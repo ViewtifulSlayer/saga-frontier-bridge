@@ -105,6 +105,30 @@ The plugin output is
 `SagaFrontierBridge.dll` and `SagaFrontierBridge.Core.dll`. The MCP host is
 under `src/SagaFrontierBridge.Mcp/bin/Release/net8.0/`.
 
+## Package a release
+
+```powershell
+pwsh ./tools/package-release.ps1
+```
+
+The script reads the version from `Directory.Build.props`, publishes the plugin
+and MCP host, and writes these files under `artifacts/release/`:
+
+```text
+saga-frontier-bridge-<version>-plugin-win-x64.zip
+saga-frontier-bridge-<version>-mcp-win-x64.zip
+SHA256SUMS.txt
+```
+
+It validates the ZIP contents and checks that the built assemblies report the
+same version before writing the checksums.
+
+The same packager runs in the `package` job when the `build` workflow is
+started manually from the Actions tab. The job waits for the tested `build`
+job, verifies the checksum file, and uploads one workflow artifact named
+`saga-frontier-bridge-release` containing both ZIPs and `SHA256SUMS.txt`. It
+does not create a Git tag or a GitHub release.
+
 ## Install BepInEx
 
 1. Download a BepInEx 6 IL2CPP `win-x64` bleeding-edge archive.
@@ -224,7 +248,7 @@ src/SagaFrontierBridge.Plugin/    BepInEx plugin, config, reflection runtime pro
 src/SagaFrontierBridge.Mcp/       stdio MCP wrapper over the HTTP surface
 tests/SagaFrontierBridge.Core.Tests/  Core integration and documentation tests
 tests/SagaFrontierBridge.Mcp.Tests/   Stdio MCP integration tests
-tools/                            Build, deploy, and save-work comparison scripts
+tools/                            Build, deploy, package, and compare scripts
 docs/api.md                       Endpoint contract and examples
 docs/mcp.md                       MCP host configuration and tools
 docs/save-path.md                 IL2CPP serialization and integrity map

@@ -29,3 +29,34 @@ jobs:
 
       - name: Test
         run: dotnet test SagaFrontierBridge.sln -c Release --no-build
+
+  package:
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Package release
+        shell: pwsh
+        run: ./tools/package-release.ps1
+
+      - name: Verify checksums
+        shell: bash
+        run: cd artifacts/release && sha256sum -c SHA256SUMS.txt
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: saga-frontier-bridge-release
+          path: |
+            artifacts/release/*.zip
+            artifacts/release/SHA256SUMS.txt
+          if-no-files-found: error

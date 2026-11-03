@@ -32,6 +32,12 @@ release to compare against.
   non-image screenshot errors, and bridge timeouts.
 - Documentation consistency tests that compare the bridge, game, Unity, and
   BepInEx versions across the README, docs, and plugin project.
+- A `tools/package-release.ps1` release packager that publishes the plugin and
+  framework-dependent MCP host into versioned ZIPs and writes a SHA-256
+  checksum file.
+- A manual `package` job in the Windows CI workflow that runs the packager,
+  verifies the checksums, and uploads the ZIPs and checksum file as a workflow
+  artifact.
 - API and MCP documentation, and a Windows CI build workflow.
 
 ### Security and scope

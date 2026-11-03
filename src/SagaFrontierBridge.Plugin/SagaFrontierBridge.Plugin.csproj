@@ -4,10 +4,8 @@
     <AssemblyName>SagaFrontierBridge</AssemblyName>
     <RootNamespace>SagaFrontierBridge</RootNamespace>
     <Product>SaGa Frontier Bridge</Product>
-    <Version>0.1.0</Version>
     <Authors>ViewtifulSlayer</Authors>
     <Description>Read-only loopback bridge for SaGa Frontier Remastered.</Description>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <BepInExPluginGuid>com.viewtifulslayer.sagafrontier.bridge</BepInExPluginGuid>

@@ -11,7 +11,31 @@ any endpoint to the plugin.
   says otherwise.
 - .NET 8 runtime or SDK.
 
-## Build and run
+## Packaged release
+
+The release ZIP contains `SagaFrontierBridge.Mcp.exe`, its dependency files, and
+this document. Extract it anywhere and use the executable directly as the MCP
+`command`; no repository checkout or `dotnet` prefix is needed. The .NET 8
+runtime is still required.
+
+```json
+{
+  "mcpServers": {
+    "saga-frontier-bridge": {
+      "command": "C:\\Tools\\saga-frontier-bridge-<version>-mcp-win-x64\\SagaFrontierBridge.Mcp.exe",
+      "env": {
+        "SAGA_BRIDGE_URL": "http://127.0.0.1:27999",
+        "SAGA_BRIDGE_TOKEN": "set-this-in-the-client-environment"
+      }
+    }
+  }
+}
+```
+
+Replace `<version>` and the path with the extracted folder. If your client
+supports environment expansion, use `${SAGA_BRIDGE_TOKEN}` instead of a literal.
+
+## Build and run from source
 
 From the repository root:
 
@@ -37,7 +61,7 @@ the token from being sent to an arbitrary service.
 Set the token in the MCP client's environment or env block. Do not put it in a
 committed MCP config.
 
-Example MCP client entry:
+Example MCP client entry from a source build:
 
 ```json
 {

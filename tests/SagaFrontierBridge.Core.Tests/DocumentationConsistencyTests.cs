@@ -13,20 +13,24 @@ namespace SagaFrontierBridge.Core.Tests
         private const string SupportedUnityVersion = "2019.4.16f1";
         private const string PluginProjectPath =
             "src/SagaFrontierBridge.Plugin/SagaFrontierBridge.Plugin.csproj";
+        private const string BuildPropsPath = "Directory.Build.props";
 
         private static readonly string RepositoryRoot = FindRepositoryRoot();
 
         [Fact]
-        public void BridgeVersionMatchesReadmeChangelogApiAndPluginProject()
+        public void BridgeVersionMatchesReadmeChangelogApiAndBuildProps()
         {
-            var pluginProject = ReadProject(PluginProjectPath);
-            var pluginVersion = Assert.Single(
-                    pluginProject.Descendants(),
+            var buildProps = ReadProject(BuildPropsPath);
+            var projectVersion = Assert.Single(
+                    buildProps.Descendants(),
                     element => element.Name.LocalName == "Version")
                 .Value
                 .Trim();
 
-            Assert.Equal(BridgeInfo.Version, pluginVersion);
+            Assert.Equal(BridgeInfo.Version, projectVersion);
+            Assert.Equal(
+                new Version($"{BridgeInfo.Version}.0"),
+                typeof(BridgeInfo).Assembly.GetName().Version);
 
             var readme = NormalizeWhitespace(Read("README.md"));
             var changelog = NormalizeWhitespace(Read("CHANGELOG.md"));
