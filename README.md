@@ -1,5 +1,7 @@
 # SaGa Frontier Bridge
 
+[![build](https://github.com/ViewtifulSlayer/saga-frontier-bridge/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ViewtifulSlayer/saga-frontier-bridge/actions/workflows/build.yml)
+
 A read-only BepInEx 6 IL2CPP plugin that exposes a small loopback HTTP API from
 *SaGa Frontier Remastered* (PC/Steam, Unity 2019.4.16f1, IL2CPP metadata v24).
 
