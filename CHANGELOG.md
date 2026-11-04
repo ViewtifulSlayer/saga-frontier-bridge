@@ -38,6 +38,9 @@ release to compare against.
 - A manual `package` job in the Windows CI workflow that runs the packager,
   verifies the checksums, and uploads the ZIPs and checksum file as a workflow
   artifact.
+- A `release` job that runs for `v*` tag pushes, checks the tag against
+  `Directory.Build.props`, and publishes a GitHub release with both ZIPs and
+  `SHA256SUMS.txt` attached.
 - API and MCP documentation, and a Windows CI build workflow.
 
 ### Security and scope

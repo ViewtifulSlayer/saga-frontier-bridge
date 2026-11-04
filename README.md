@@ -123,11 +123,25 @@ SHA256SUMS.txt
 It validates the ZIP contents and checks that the built assemblies report the
 same version before writing the checksums.
 
-The same packager runs in the `package` job when the `build` workflow is
-started manually from the Actions tab. The job waits for the tested `build`
-job, verifies the checksum file, and uploads one workflow artifact named
-`saga-frontier-bridge-release` containing both ZIPs and `SHA256SUMS.txt`. It
-does not create a Git tag or a GitHub release.
+The same packager runs in two jobs in the `build` workflow:
+
+- `package` runs when the workflow is started manually from the Actions tab. It
+  waits for the tested `build` job, verifies the checksum file, and uploads one
+  workflow artifact named `saga-frontier-bridge-release` containing both ZIPs
+  and `SHA256SUMS.txt`. It does not create a Git tag or a GitHub release.
+- `release` runs when a `v*` tag is pushed. It checks that the tag matches the
+  version in `Directory.Build.props`, packages the same files, verifies the
+  checksums, and publishes a GitHub release named after the tag with both ZIPs
+  and `SHA256SUMS.txt` attached. Re-running the job replaces the attached
+  assets instead of failing.
+
+Tag a release only after the manual `package` job succeeds and its artifact has
+been downloaded and verified:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
 
 ## Install BepInEx
 
